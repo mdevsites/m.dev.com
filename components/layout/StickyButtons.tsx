@@ -49,7 +49,7 @@ export default function StickyButtons() {
                 <a
                     key={button.label}
                     href={button.href}
-                    target="_blank"
+                    target={button.label === 'WhatsApp' ? '_blank' : undefined}
                     rel="noopener noreferrer"
                     className={`${button.bgColor} ${button.shadowColor} w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-white shadow-large transition-all duration-300 hover:scale-110`}
                     style={{

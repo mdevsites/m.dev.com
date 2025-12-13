@@ -4,9 +4,9 @@
 
 // Contact Information (Placeholders - to be updated)
 export const CONTACT_INFO = {
-  email: 'kontakt@m.dev',
-  phone: '+48 123 456 789',
-  whatsapp: '+48123456789',
+  email: 'm.devkontakt@gmail.com',
+  phone: '+48 691 630 461',
+  whatsapp: '48691630461',
   location: 'Polska',
 };
 
