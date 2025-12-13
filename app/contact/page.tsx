@@ -27,15 +27,15 @@ export default function ContactPage() {
     };
 
     return (
-        <main className="min-h-screen selection:bg-purple-500/30 font-sans relative">
+        <main className="min-h-screen selection:bg-purple-500/30 font-sans relative lg:flex lg:flex-col lg:justify-center">
             {/* Background Decor */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[100px]" />
                 <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-pink-600/10 rounded-full blur-[100px]" />
             </div>
 
-            {/* Spacer for Navbar */}
-            <div className="h-24 md:h-32 w-full relative z-10" />
+            {/* Spacer for Navbar - Visible mostly on mobile/tablet */}
+            <div className="h-24 md:h-32 w-full relative z-10 lg:hidden" />
 
             <div className="container-custom w-full max-w-7xl relative z-10 px-4 pb-12 mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
