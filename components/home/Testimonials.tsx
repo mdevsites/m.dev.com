@@ -85,15 +85,6 @@ export default function Testimonials() {
                                 zIndex = 10;
                             }
 
-                            // Gradient colors for cards - muted and sophisticated
-                            const gradients = [
-                                'linear-gradient(135deg, #6B7280 0%, #4B5563 100%)', // Slate gray
-                                'linear-gradient(135deg, #9CA3AF 0%, #6B7280 100%)', // Cool gray
-                                'linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)', // Muted purple
-                                'linear-gradient(135deg, #6366F1 0%, #4F46E5 100%)', // Deep indigo
-                                'linear-gradient(135deg, #10B981 0%, #059669 100%)', // Muted emerald
-                            ];
-
                             return (
                                 <motion.div
                                     key={testimonialIndex}
@@ -117,9 +108,8 @@ export default function Testimonials() {
                                 >
                                     {/* Card */}
                                     <div
-                                        className="relative rounded-3xl p-10 md:p-12 shadow-2xl overflow-hidden flex flex-col items-center justify-center"
+                                        className="relative rounded-3xl p-10 md:p-12 shadow-2xl overflow-hidden flex flex-col items-center justify-center bg-white/5 backdrop-blur-md border border-white/10"
                                         style={{
-                                            background: gradients[testimonialIndex % gradients.length],
                                             minHeight: '350px',
                                         }}
                                     >

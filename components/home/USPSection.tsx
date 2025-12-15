@@ -46,13 +46,13 @@ export default function USPSection() {
 
     return (
         <section className="section-spacing !pt-12 overflow-hidden">
-            <div className="container-custom">
+            <div className="container-custom flex flex-col gap-40">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="flex flex-col items-center text-center mb-20"
+                    className="flex flex-col items-center text-center"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                         Dlaczego warto ze mną współpracować?
