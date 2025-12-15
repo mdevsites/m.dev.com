@@ -29,35 +29,39 @@ export const NAV_LINKS = [
 // USP (Unique Selling Points) Data
 export const USP_ITEMS = [
   {
-    icon: '⚡',
+    iconName: 'LuZap',
     title: 'Szybka realizacja',
-    description: 'Projekty realizowane w 2-4 tygodnie',
+    description: 'Projekty w 2-4 tygodnie',
     color: 'from-yellow-400 to-orange-500',
+    span: 1,
   },
   {
-    icon: '💻',
+    iconName: 'LuCode',
     title: 'Nowoczesne technologie',
-    description: 'React, Next.js, najnowsze standardy web development',
+    description: 'React, Next.js i więcej',
     color: 'from-blue-400 to-purple-500',
+    span: 2,
   },
   {
-    icon: '📱',
+    iconName: 'LuSmartphone',
     title: 'Responsywny design',
-    description: 'Idealne wyświetlanie na wszystkich urządzeniach',
+    description: 'Idealnie na każdym ekranie',
     color: 'from-green-400 to-cyan-500',
+    span: 1,
   },
   {
-    icon: '🛟',
+    iconName: 'LuLifeBuoy',
     title: 'Wsparcie posprzedażowe',
-    description: '3 miesiące darmowego wsparcia technicznego',
+    description: '3 miesiące wsparcia gratis',
     color: 'from-pink-400 to-red-500',
+    span: 1,
   },
-
   {
-    icon: '💰',
+    iconName: 'LuBadgeDollarSign',
     title: 'Konkurencyjne ceny',
-    description: 'Najlepsza jakość w przystępnej cenie',
+    description: 'Jakość w dobrej cenie',
     color: 'from-emerald-400 to-teal-500',
+    span: 1,
   },
 ];
 
