@@ -6,7 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import StickyButtons from "@/components/layout/StickyButtons";
 import Script from "next/script";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 import { Suspense } from "react";
 
 const inter = Inter({
@@ -21,14 +21,16 @@ const outfit = Outfit({
 
 function LayoutContent({ children }: { children: React.ReactNode }) {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const hideNav = searchParams.get("hideNav") === "true";
+  const isDemo = pathname?.startsWith("/demos");
 
   return (
     <>
-      {!hideNav && <Navbar />}
+      {!hideNav && !isDemo && <Navbar />}
       <main>{children}</main>
-      {!hideNav && <Footer />}
-      {!hideNav && <StickyButtons />}
+      {!hideNav && !isDemo && <Footer />}
+      {!hideNav && !isDemo && <StickyButtons />}
 
       {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
         <>

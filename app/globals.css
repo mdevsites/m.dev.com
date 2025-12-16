@@ -105,7 +105,7 @@ html {
 
 body {
   min-height: 100vh;
-  background: linear-gradient(to bottom, #2d1b4e 0%, #5B21B6 25%, #7C3AED 50%, #A78BFA 75%, #ffffff 100%);
+  background: linear-gradient(to bottom, var(--color-purple-ultra-dark) 0%, var(--color-purple-dark) 20%, var(--color-purple-medium) 40%, var(--color-purple-lighter) 60%, #d8b4fe 80%, #e9d5ff 90%, var(--color-white) 100%);
   color: var(--color-foreground);
   font-family: var(--font-body);
   line-height: 1.6;

@@ -255,7 +255,7 @@ export const PORTFOLIO_PROJECTS = [
     fullDescription:
       'Projekt portfolio dla fotografa stworzony w ramach pakietu START. Cechuje się minimalistycznym designem, który nie odciąga uwagi od zdjęć. Wykorzystuje klasyczną typografię Playfair Display oraz nowoczesny układ masonry dla galerii.',
     tags: ['Next.js', 'Tailwind CSS', 'Masonry Grid', 'Minimalism'],
-    imageSrc: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800&auto=format&fit=crop',
+    imageSrc: '/assets/projects/fotograf-demo-main.png',
     link: '/demos/fotograf',
     client: 'Demo Project',
     timeline: '3 dni',
@@ -266,6 +266,27 @@ export const PORTFOLIO_PROJECTS = [
       'Elegancka prezentacja zdjęć',
       'Szybki czas ładowania dzięki brakowi ciężkich bibliotek',
       'W pełni responsywny layout'
+    ]
+  },
+  {
+    id: 'salon-beauty',
+    title: 'Beauty Salon - Pakiet BIZNES',
+    shortDescription:
+      'Elegancka strona dla salonu kosmetycznego z animacjami i podstronami. Design premium z akcentami złota i różu.',
+    fullDescription:
+      'Rozbudowany projekt dla salonu beauty realizujący założenia pakietu BIZNES. Zawiera 4 podstrony (Home, Usługi, Galeria, Kontakt), lekkie animacje przy scrollowaniu oraz dedykowany layout graficzny.',
+    tags: ['Next.js', 'Framer Motion', 'Tailwind CSS', 'Multi-page'],
+    imageSrc: '/assets/projects/salon-beauty-demo-main.png',
+    link: '/demos/salon-beauty',
+    client: 'Demo Project',
+    timeline: '2 tygodnie',
+    role: 'Full Stack Developer',
+    challenge: 'Stworzenie wrażenia premium i elegancji przy zachowaniu wysokiej wydajności i płynności animacji.',
+    solution: 'Użycie Framer Motion do subtelnych animacji wejścia (fade-in, slide-up). Dobór ekskluzywnej palety kolorystycznej oraz customowych fontów Montserrat i Open Sans.',
+    results: [
+      'Wysoka konwersja dzięki przemyślanym CTA',
+      'Płynne przejścia między podstronami',
+      'Profesjonalna prezentacja usług i cennika'
     ]
   },
 ];
