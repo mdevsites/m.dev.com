@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Navbar from './components/Navbar';
 
 export const metadata: Metadata = {
     title: 'Elegance Salon - Nowoczesne Studio Urody | Demo',
@@ -10,5 +11,10 @@ export default function SalonBeautyLayout({
 }: {
     children: React.ReactNode;
 }) {
-    return <>{children}</>;
+    return (
+        <>
+            <Navbar />
+            {children}
+        </>
+    );
 }

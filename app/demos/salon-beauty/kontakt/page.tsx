@@ -274,7 +274,7 @@ export default function ContactPage() {
                 >
                     <div className="w-full h-[400px] lg:h-[500px] relative grayscale hover:grayscale-0 transition-all duration-1000">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.7667612741!2d21.0189!3d52.2215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471eccf1af6f7467%3A0x62955513c3290b2c!2aPi%C4%99kna%2C%20Warszawa!5e0!3m2!1spl!2spl!4v1600000000000!5m2!1spl!2spl"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.766761274157!2d21.016714476813877!3d52.22153257198279!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecd57e1bd066d%3A0x8f84a8eb3ca6d8dc!2zUGnEmWtuYSAxMC8xMiwgMDAtNTQ5IFdhcnN6YXdh!5e0!3m2!1spl!2spl!4v1734461000000!5m2!1spl!2spl"
                             width="100%"
                             height="100%"
                             style={{ border: 0 }}

@@ -33,7 +33,7 @@ export default function PortfolioPage() {
 
                 <div className="relative z-10">
                     {/* Header Section */}
-                    <header className="px-6 md:px-12 lg:px-16 mb-32 md:mb-40">
+                    <header className="px-6 md:px-12 lg:px-16 mb-16 md:mb-20">
                         <div className="flex flex-col items-center text-center w-full">
                             {/* Overline */}
                             <div className="flex items-center gap-3 mb-6 justify-center">
@@ -62,7 +62,7 @@ export default function PortfolioPage() {
                     </header>
 
                     {/* Projects Section */}
-                    <section style={{ paddingTop: '14rem' }} className="px-6 md:px-12 lg:px-16 pb-32">
+                    <section style={{ paddingTop: '7rem' }} className="px-6 md:px-12 lg:px-16 pb-32">
                         <div className="space-y-0">
                             {PORTFOLIO_PROJECTS.map((project, index) => (
                                 <div key={project.id}>
