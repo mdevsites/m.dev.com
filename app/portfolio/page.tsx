@@ -10,68 +10,121 @@ export default function PortfolioPage() {
         title: string;
         link: string;
     } | null>(null);
+
     return (
-        <div className="min-h-screen bg-[#050505] text-white selection:bg-purple-500/30 font-sans">
-            {/* Background Gradients */}
-            <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-0 right-0 w-[800px] h-[600px] bg-purple-900/20 blur-[120px] rounded-full mix-blend-screen" />
-                <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-900/10 blur-[100px] rounded-full mix-blend-screen" />
-            </div>
-
-            {/* Spacer for Navbar */}
-            <div className="h-24 w-full relative z-10" />
-
-            <div className="relative z-10 pb-24 container-custom">
-                <div className="text-center w-full flex flex-col items-center">
-                    <h1 className="text-4xl md:text-6xl font-bold mb-6 text-center leading-tight">
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-                            Moje&nbsp;
-                        </span>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
-                            Realizacje
-                        </span>
-                    </h1>
-                    <p className="text-gray-400 text-lg md:text-xl text-center max-w-5xl px-4">
-                        Wybrane projekty, które pokazują moje podejście do designu i technologii.
-                        Tworzę rozwiązania, które łączą estetykę z funkcjonalnością.
-                    </p>
+        <div className="min-h-screen bg-[#050505] text-white selection:bg-purple-500/30 flex justify-center">
+            <div className="w-full max-w-[1440px]">
+                {/* Minimal Background Gradient */}
+                <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+                    <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-900/10 blur-[150px] rounded-full"></div>
+                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-pink-900/5 blur-[150px] rounded-full"></div>
                 </div>
 
-                {/* Rigid Spacer */}
-                <div style={{ height: '100px' }} className="w-full shrink-0" />
+                {/* Spacer for Navbar */}
+                <div className="h-24 w-full relative z-10" />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
-                    {PORTFOLIO_PROJECTS.map((project, index) => (
-                        <div
-                            key={index}
-                            className="w-full"
-                        >
-                            <ProjectCard
-                                title={project.title}
-                                description={project.shortDescription}
-                                tags={project.tags}
-                                imageSrc={project.imageSrc}
-                                link={project.link}
-                                onDetailsClick={() => setSelectedProject({
-                                    title: project.title,
-                                    link: project.link,
-                                })}
-                            />
+                <div className="relative z-10">
+                    {/* Header Section */}
+                    <header className="px-6 md:px-12 lg:px-16 mb-32 md:mb-40">
+                        <div className="flex flex-col items-center text-center w-full">
+                            {/* Overline */}
+                            <div className="flex items-center gap-3 mb-6 justify-center">
+                                <div className="w-12 h-[2px] bg-gradient-to-r from-purple-500 to-pink-500"></div>
+                                <span className="text-sm tracking-[0.3em] uppercase text-gray-500 font-medium">
+                                    Portfolio
+                                </span>
+                            </div>
+
+                            {/* Main Title */}
+                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-[1.1] tracking-tight text-center">
+                                <span className="text-white">Wybrane </span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-purple-500">
+                                    Realizacje
+                                </span>
+                            </h1>
+
+                            {/* Description */}
+                            <div className="flex justify-center w-full">
+                                <p className="text-xl md:text-2xl text-gray-400 leading-relaxed max-w-4xl text-center">
+                                    Projekty, które łączą nowoczesny design z funkcjonalnością.
+                                    Każda realizacja to unikalne połączenie estetyki i technologii.
+                                </p>
+                            </div>
                         </div>
-                    ))}
+                    </header>
+
+                    {/* Projects Section */}
+                    <section style={{ paddingTop: '14rem' }} className="px-6 md:px-12 lg:px-16 pb-32">
+                        <div className="space-y-0">
+                            {PORTFOLIO_PROJECTS.map((project, index) => (
+                                <div key={project.id}>
+                                    <ProjectCard
+                                        title={project.title}
+                                        description={project.shortDescription}
+                                        tags={project.tags}
+                                        imageSrc={project.imageSrc}
+                                        link={project.link}
+                                        index={index}
+                                        onDetailsClick={() => setSelectedProject({
+                                            title: project.title,
+                                            link: project.link,
+                                        })}
+                                    />
+
+                                    {/* Separator - Not After Last Project */}
+                                    {index < PORTFOLIO_PROJECTS.length - 1 && (
+                                        <div style={{
+                                            marginTop: '10rem',
+                                            marginBottom: '10rem',
+                                            width: '100%',
+                                            display: 'flex',
+                                            justifyContent: 'center'
+                                        }}>
+                                            <div style={{
+                                                width: '700px',
+                                                maxWidth: '90%',
+                                                height: '1px',
+                                                backgroundColor: 'rgba(147, 51, 234, 0.3)',
+                                                border: '1px solid rgba(255, 255, 255, 0.2)'
+                                            }}></div>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* Bottom CTA Section */}
+                    <section style={{ paddingTop: '5rem', paddingBottom: '5rem' }} className="px-6 md:px-12 lg:px-16">
+                        <div className="pt-20">
+                            <div className="flex flex-col items-center text-center w-full">
+                                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                                    Masz pomysł na projekt?
+                                </h2>
+                                <div className="flex justify-center w-full">
+                                    <p className="text-xl text-gray-400 mb-8 leading-relaxed max-w-4xl">
+                                        Porozmawiajmy o Twoim następnym projekcie. Jestem gotowy, żeby zamienić Twoją wizję w rzeczywistość.
+                                    </p>
+                                </div>
+                                <a
+                                    href="/contact"
+                                    className="inline-block px-8 py-4 bg-white text-black font-semibold text-sm tracking-wide uppercase hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white transition-all duration-300 border-2 border-white hover:border-purple-500"
+                                >
+                                    Skontaktuj się
+                                </a>
+                            </div>
+                        </div>
+                    </section>
                 </div>
 
-                {/* Rigid Spacer for Footer */}
-                <div style={{ height: '100px' }} className="w-full shrink-0" />
+                {/* Project Modal */}
+                <ProjectModal
+                    isOpen={selectedProject !== null}
+                    onClose={() => setSelectedProject(null)}
+                    demoUrl={selectedProject?.link || ""}
+                    projectTitle={selectedProject?.title || ""}
+                />
             </div>
-
-            {/* Project Modal */}
-            <ProjectModal
-                isOpen={selectedProject !== null}
-                onClose={() => setSelectedProject(null)}
-                demoUrl={selectedProject?.link || ""}
-                projectTitle={selectedProject?.title || ""}
-            />
         </div>
     );
 }

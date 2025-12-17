@@ -11,6 +11,7 @@ interface ProjectCardProps {
     link: string;
     className?: string;
     onDetailsClick?: () => void;
+    index?: number;
 }
 
 export default function ProjectCard({
@@ -21,110 +22,93 @@ export default function ProjectCard({
     link,
     className = "",
     onDetailsClick,
+    index = 0,
 }: ProjectCardProps) {
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className={`
-                relative group overflow-hidden
-                w-full ${className}
-                flex flex-col md:block md:h-[500px]
-                bg-[#0A0A0A]
-            `}
+        <motion.article
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, delay: index * 0.1, ease: [0.21, 0.45, 0.27, 0.9] }}
+            className={`group relative w-full ${className}`}
         >
-            {/* Image Container */}
-            <div className={`
-                relative w-full shrink-0
-                h-[250px] md:absolute md:inset-0 md:h-full
-                transition-transform duration-700 md:group-hover:scale-105
-            `}>
-                <div className="relative w-full h-full overflow-hidden">
-                    <Image
-                        src={imageSrc}
-                        alt={title}
-                        fill
-                        className="object-cover"
-                    />
-                </div>
-            </div>
-
-
-
-            {/* Content Container - Mobile Only */}
-            <div className={`
-                relative flex flex-col justify-end
-                p-4 sm:p-6
-                text-center
-                h-auto
-                z-10 bg-[#0A0A0A]
-                md:hidden
-            `}>
-
-                <div className="flex flex-wrap gap-2 mb-3 justify-center">
-                    {tags.map((tag, index) => (
+            {/* Content - Now Above Image */}
+            <div style={{ marginBottom: '3rem' }} className="text-center">
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-4 justify-center">
+                    {tags.map((tag, idx) => (
                         <span
-                            key={index}
-                            className="px-3 py-1 text-xs font-medium rounded-full bg-white/10 text-white border border-white/10 backdrop-blur-md"
+                            key={idx}
+                            className="px-3 py-1 text-xs font-medium tracking-wide uppercase text-gray-400 border border-gray-800 hover:border-purple-500/30 hover:text-purple-400 transition-colors duration-300"
                         >
                             {tag}
                         </span>
                     ))}
                 </div>
 
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 md:drop-shadow-lg leading-tight">
+                {/* Title */}
+                <h3
+                    className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight tracking-tight text-center group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all duration-500 cursor-pointer outline-none focus:outline-none"
+                    onClick={onDetailsClick}
+                >
                     {title}
                 </h3>
 
-                <div className="overflow-hidden w-full flex flex-col items-center">
-                    <p className="text-gray-400 md:text-gray-200 text-sm leading-relaxed mb-6 opacity-90 w-full max-w-[95%] mx-auto">
+                {/* Description */}
+                <div className="flex justify-center w-full">
+                    <p className="text-gray-400 text-base md:text-lg leading-relaxed max-w-4xl text-center">
                         {description}
                     </p>
-                    <button
-                        onClick={onDetailsClick}
-                        className="inline-flex items-center text-white font-medium hover:text-purple-300 transition-colors bg-transparent border-none cursor-pointer p-0"
-                    >
-                        Zobacz szczegóły
-                        <svg
-                            className="w-5 h-5 ml-2"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"
-                            />
-                        </svg>
-                    </button>
                 </div>
             </div>
 
-            {/* Desktop Button - Shows on Hover */}
-            <div className="hidden md:flex absolute inset-0 items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 z-20">
-                <button
-                    onClick={onDetailsClick}
-                    className="relative px-8 py-4 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 text-white font-semibold text-lg shadow-2xl transition-all duration-300 transform hover:scale-110 hover:shadow-purple-500/50 overflow-hidden group/btn"
-                >
-                    {/* Animated gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000"></div>
+            {/* Image Container */}
+            <div
+                className="relative w-full aspect-[16/10] md:aspect-[16/9] overflow-hidden bg-[#0A0A0A] cursor-pointer outline-none focus:outline-none"
+                onClick={onDetailsClick}
+            >
+                {/* Image */}
+                <Image
+                    src={imageSrc}
+                    alt={title}
+                    fill
+                    className="object-cover transition-all duration-700 ease-out group-hover:scale-105"
+                />
 
-                    {/* Glass effect */}
-                    <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
+                {/* Gradient Overlay on Hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                    {/* Button text */}
-                    <span className="relative z-10 flex items-center gap-2">
+                {/* Hover CTA */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-8 py-4 bg-white text-black font-semibold text-sm tracking-wide uppercase rounded-none border-2 border-white hover:bg-transparent hover:text-white transition-all duration-300 outline-none focus:outline-none"
+                    >
                         Zobacz projekt
-                        <svg className="w-5 h-5 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                    </span>
-                </button>
+                    </motion.button>
+                </div>
             </div>
 
-        </motion.div >
+            {/* CTA Link - Mobile - Below Image */}
+            <div className="mt-6 flex justify-center">
+                <button
+                    onClick={onDetailsClick}
+                    className="inline-flex items-center gap-2 text-white font-medium text-sm tracking-wide uppercase group/btn"
+                >
+                    <span className="group-hover/btn:text-purple-400 transition-colors duration-300">
+                        Zobacz szczegóły
+                    </span>
+                    <svg
+                        className="w-5 h-5 transition-transform duration-300 group-hover/btn:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </button>
+            </div>
+        </motion.article>
     );
 }
