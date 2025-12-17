@@ -1,5 +1,8 @@
 import type { NextConfig } from "next";
 
+// Force restart - timestamp: ${new Date().getTime()}
+
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [

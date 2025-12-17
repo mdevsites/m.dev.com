@@ -4,6 +4,7 @@ import { useState } from "react";
 import ProjectCard from "@/components/portfolio/ProjectCard";
 import ProjectModal from "@/components/portfolio/ProjectModal";
 import { PORTFOLIO_PROJECTS } from "@/lib/constants";
+import BackgroundEffects from "@/components/ui/BackgroundEffects";
 
 export default function PortfolioPage() {
     const [selectedProject, setSelectedProject] = useState<{
@@ -12,13 +13,16 @@ export default function PortfolioPage() {
     } | null>(null);
 
     return (
-        <div className="min-h-screen bg-[#050505] text-white selection:bg-purple-500/30 flex justify-center">
-            <div className="w-full max-w-[1440px]">
-                {/* Minimal Background Gradient */}
-                <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-                    <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-900/10 blur-[150px] rounded-full"></div>
-                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-pink-900/5 blur-[150px] rounded-full"></div>
-                </div>
+        <div className="min-h-screen bg-[#050505] text-white selection:bg-purple-500/30 flex justify-center font-sans">
+            {/* Background Gradients (from Pricing) */}
+            <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-0 right-0 w-[800px] h-[600px] bg-purple-900/20 blur-[120px] rounded-full mix-blend-screen" />
+                <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-900/10 blur-[100px] rounded-full mix-blend-screen" />
+            </div>
+
+            <div className="w-full max-w-[1440px] relative z-10">
+                {/* Global Background Effects */}
+                <BackgroundEffects />
 
                 {/* Spacer for Navbar */}
                 <div className="h-24 w-full relative z-10" />
@@ -97,18 +101,18 @@ export default function PortfolioPage() {
                     {/* Bottom CTA Section */}
                     <section style={{ paddingTop: '5rem', paddingBottom: '5rem' }} className="px-6 md:px-12 lg:px-16">
                         <div className="pt-20">
-                            <div className="flex flex-col items-center text-center w-full">
-                                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                            <div className="flex flex-col items-center text-center w-full gap-10">
+                                <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
                                     Masz pomysł na projekt?
                                 </h2>
                                 <div className="flex justify-center w-full">
-                                    <p className="text-xl text-gray-400 mb-8 leading-relaxed max-w-4xl">
+                                    <p className="text-xl text-gray-400 leading-relaxed max-w-4xl">
                                         Porozmawiajmy o Twoim następnym projekcie. Jestem gotowy, żeby zamienić Twoją wizję w rzeczywistość.
                                     </p>
                                 </div>
                                 <a
                                     href="/contact"
-                                    className="inline-block px-8 py-4 bg-white text-black font-semibold text-sm tracking-wide uppercase hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white transition-all duration-300 border-2 border-white hover:border-purple-500"
+                                    className="btn-glass inline-block"
                                 >
                                     Skontaktuj się
                                 </a>

@@ -4,6 +4,7 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { FiMail, FiPhone } from 'react-icons/fi';
 import { useSearchParams } from 'next/navigation';
+import BackgroundEffects from "@/components/ui/BackgroundEffects";
 
 function ContactForm() {
     const searchParams = useSearchParams();
@@ -82,7 +83,7 @@ function ContactForm() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="lg:col-span-4 space-y-8 pt-8"
+                    className="lg:col-span-4 flex flex-col gap-6 pt-8"
                 >
                     <div>
                         <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
@@ -94,27 +95,30 @@ function ContactForm() {
                         </p>
                     </div>
 
-                    <div className="space-y-6" style={{ marginTop: '4rem' }}>
-                        <div className="flex items-start space-x-4">
-                            <div className="p-3 rounded-full bg-white/5 border border-white/10 text-purple-400">
-                                <FiMail className="w-6 h-6" />
+                    <div className="flex flex-col gap-6">
+                        {/* Email - No Glass Background */}
+                        <div className="group cursor-pointer">
+                            <div className="flex items-center gap-8 mb-3">
+                                <div className="p-3 rounded-full bg-white/5 text-purple-300 group-hover:scale-110 transition-transform">
+                                    <FiMail className="w-6 h-6" />
+                                </div>
+                                <h3 className="text-white font-semibold uppercase tracking-wider text-sm">Napisz do nas</h3>
                             </div>
-                            <div>
-                                <h3 className="text-white font-medium">Napisz do nas</h3>
-                                <p className="text-gray-400">m.devkontakt@gmail.com</p>
-                            </div>
+                            <p className="text-base md:text-lg text-white font-semibold pl-[5rem] tracking-tight group-hover:text-purple-300 transition-colors">m.devkontakt@gmail.com</p>
                         </div>
 
-                        <div className="flex items-start space-x-4">
-                            <div className="p-3 rounded-full bg-white/5 border border-white/10 text-pink-400">
-                                <FiPhone className="w-6 h-6" />
+                        {/* Phone - No Glass Background */}
+                        <div className="group cursor-pointer">
+                            <div className="flex items-center gap-8 mb-3">
+                                <div className="p-3 rounded-full bg-white/5 text-pink-300 group-hover:scale-110 transition-transform">
+                                    <FiPhone className="w-6 h-6" />
+                                </div>
+                                <h3 className="text-white font-semibold uppercase tracking-wider text-sm">Zadzwoń</h3>
                             </div>
-                            <div>
-                                <h3 className="text-white font-medium">Zadzwoń</h3>
-                                <p className="text-gray-400">+48 691 630 461</p>
-                            </div>
+                            <p className="text-base md:text-lg text-white font-semibold pl-[5rem] tracking-tight group-hover:text-pink-300 transition-colors">+48 691 630 461</p>
                         </div>
                     </div>
+
                 </motion.div>
 
                 {/* PRAWA KOLUMNA - FORMULARZ */}
@@ -263,14 +267,17 @@ function ContactForm() {
                     )}
                 </motion.div>
 
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }
 
 export default function ContactPage() {
     return (
         <main className="min-h-screen selection:bg-purple-500/30 font-sans relative lg:flex lg:flex-col lg:justify-center">
+            {/* Particles Effect */}
+            <BackgroundEffects />
+
             {/* Background Decor */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[100px]" />

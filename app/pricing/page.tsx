@@ -10,6 +10,7 @@ import {
     XMarkIcon,
 } from '@heroicons/react/24/outline';
 import CTASection from '@/components/home/CTASection';
+import BackgroundEffects from "@/components/ui/BackgroundEffects";
 
 // --- DATA FROM USER REQUEST ---
 
@@ -84,6 +85,8 @@ export default function PricingPage() {
             <div className="h-24 w-full relative z-10" />
 
             <div className="relative z-10 pb-24 flex flex-col items-center" style={{ margin: '0 40px' }}>
+                {/* Particles Effect - Moved here for visibility */}
+                <BackgroundEffects />
 
                 {/* HEADLINE */}
                 <div className="text-center w-full mb-32 flex flex-col items-center">
