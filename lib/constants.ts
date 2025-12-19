@@ -233,7 +233,7 @@ export const PORTFOLIO_PROJECTS = [
     fullDescription:
       'Najbardziej zaawansowany projekt w portfolio, demonstrujący możliwości pakietu PRO. Zawiera 5 podstron: Home (z bento grid), Lista ofert z filtracją, Detale nieruchomości, O nas oraz Kontakt. Skupia się na prestiżowym designie (dark/gold) i płynnych animacjach typu reveal.',
     tags: ['Next.js', 'Framer Motion', 'Bento Grid', 'Filtering', 'Luxury Design'],
-    imageSrc: '/assets/demos/nieruchomosci/hero.png',
+    imageSrc: '/assets/projects/nieruchomosci-demo-v2.png',
     link: '/demos/nieruchomosci',
     client: 'Demo Project',
     timeline: '3 tygodnie',

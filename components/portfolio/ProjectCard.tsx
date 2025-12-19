@@ -47,7 +47,7 @@ export default function ProjectCard({
                     src={imageSrc}
                     alt={title}
                     fill
-                    className="object-cover transition-all duration-700 ease-out group-hover:scale-105"
+                    className="object-contain transition-all duration-700 ease-out p-2 group-hover:scale-105"
                 />
 
                 {/* Gradient Overlay on Hover */}
