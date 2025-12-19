@@ -10,7 +10,7 @@ import LayoutClient from "./layout-client";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import CookieConsent from "@/components/ui/CookieConsent";
 import StructuredData from "@/components/seo/StructuredData";
-
+import SmoothScroll from "@/components/ui/SmoothScroll";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -99,7 +99,6 @@ export const metadata: Metadata = {
     // google: "your-google-verification-code", // Dodaj później z Google Search Console
   },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -110,18 +109,20 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${outfit.variable} antialiased`}
       >
-        <StructuredData />
-        <Suspense fallback={null}>
-          <LayoutClient>
-            {children}
-          </LayoutClient>
-        </Suspense>
+        <SmoothScroll>
+          <StructuredData />
+          <Suspense fallback={null}>
+            <LayoutClient>
+              {children}
+            </LayoutClient>
+          </Suspense>
 
-        <CookieConsent />
+          <CookieConsent />
 
-        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
-          <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
-        )}
+          {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
+            <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
+          )}
+        </SmoothScroll>
       </body>
     </html>
   );

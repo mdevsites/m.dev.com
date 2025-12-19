@@ -225,26 +225,25 @@ export const SERVICE_PACKAGES = [
 ];
 // Portfolio Projects Data
 export const PORTFOLIO_PROJECTS = [
-
   {
-    id: 'warsztat-mechaniczny',
-    title: 'Warsztat Mechaniczny - Pakiet START',
+    id: 'nieruchomosci-premium',
+    title: 'Horizon Estates - Pakiet PRO',
     shortDescription:
-      'Profesjonalna strona dla warsztatu samochodowego. Responsywny design, sekcje usług, o warsztacie, formularz kontaktowy. Zbudowana według specyfikacji pakietu START.',
+      'Luksusowa platforma dla agencji nieruchomości. Pakiet PRO - 5 podstron, zaawansowane animacje, bento grid i filtracja.',
     fullDescription:
-      'Kompleksowa strona typu one-page dla warsztatu samochodowego. Zawiera hero section z call-to-action, przegląd 6 głównych usług, sekcję "O nas" z zdjęciem zespołu oraz funkcjonalny formularz kontaktowy.',
-    tags: ['Next.js', 'Tailwind CSS', 'TypeScript', 'Responsive'],
-    imageSrc: '/assets/projects/mechanik-demo-v2.png',
-    link: '/demos/mechanik',
+      'Najbardziej zaawansowany projekt w portfolio, demonstrujący możliwości pakietu PRO. Zawiera 5 podstron: Home (z bento grid), Lista ofert z filtracją, Detale nieruchomości, O nas oraz Kontakt. Skupia się na prestiżowym designie (dark/gold) i płynnych animacjach typu reveal.',
+    tags: ['Next.js', 'Framer Motion', 'Bento Grid', 'Filtering', 'Luxury Design'],
+    imageSrc: '/assets/demos/nieruchomosci/hero.png',
+    link: '/demos/nieruchomosci',
     client: 'Demo Project',
-    timeline: '1 tydzień',
-    role: 'Full Stack Developer',
-    challenge: 'Stworzenie profesjonalnej strony warsztatu samochodowego zgodnie z pakietem START - max 4 sekcje, bez animacji, z funkcjonalnym formularzem kontaktowym.',
-    solution: 'Wykorzystanie Next.js 14 z App Router, Tailwind CSS dla stylowania oraz Lucide React do ikon. Zastosowanie wzorca flex justify-center dla prawidłowego centrowania sekcji.',
+    timeline: '3 tygodnie',
+    role: 'Lead Developer',
+    challenge: 'Stworzenie wrażenia najwyższej klasy luksusu przy jednoczesnym zachowaniu intuicyjnej nawigacji i rozbudowanej funkcjonalności filtracji.',
+    solution: 'Zastosowanie palety Deep Charcoal i Warm Gold. Implementacja zaawansowanych komponentów Bento Grid dla sekcji udogodnień oraz dynamicznej filtracji po stronie klienta.',
     results: [
-      'Pełna responsywność na wszystkich urządzeniach',
-      'Czas ładowania poniżej 2 sekund',
-      'Zgodność ze specyfikacją pakietu START'
+      'Kompletna platforma z 5 podstronami',
+      'Zaawansowane animacje premium (reveal, scale)',
+      'Design pozycjonujący markę w segmencie luksusowym'
     ]
   },
   {
@@ -287,6 +286,27 @@ export const PORTFOLIO_PROJECTS = [
       'Wysoka konwersja dzięki przemyślanym CTA',
       'Płynne przejścia między podstronami',
       'Profesjonalna prezentacja usług i cennika'
+    ]
+  },
+  {
+    id: 'warsztat-mechaniczny',
+    title: 'Warsztat Mechaniczny - Pakiet START',
+    shortDescription:
+      'Profesjonalna strona dla warsztatu samochodowego. Responsywny design, sekcje usług, o warsztacie, formularz kontaktowy. Zbudowana według specyfikacji pakietu START.',
+    fullDescription:
+      'Kompleksowa strona typu one-page dla warsztatu samochodowego. Zawiera hero section z call-to-action, przegląd 6 głównych usług, sekcję "O nas" z zdjęciem zespołu oraz funkcjonalny formularz kontaktowy.',
+    tags: ['Next.js', 'Tailwind CSS', 'TypeScript', 'Responsive'],
+    imageSrc: '/assets/projects/mechanik-demo-v2.png',
+    link: '/demos/mechanik',
+    client: 'Demo Project',
+    timeline: '1 tydzień',
+    role: 'Full Stack Developer',
+    challenge: 'Stworzenie profesjonalnej strony warsztatu samochodowego zgodnie z pakietem START - max 4 sekcje, bez animacji, z funkcjonalnym formularzem kontaktowym.',
+    solution: 'Wykorzystanie Next.js 14 z App Router, Tailwind CSS dla stylowania oraz Lucide React do ikon. Zastosowanie wzorca flex justify-center dla prawidłowego centrowania sekcji.',
+    results: [
+      'Pełna responsywność na wszystkich urządzeniach',
+      'Czas ładowania poniżej 2 sekund',
+      'Zgodność ze specyfikacją pakietu START'
     ]
   },
 ];

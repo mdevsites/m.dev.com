@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import {
     CheckIcon,
@@ -94,10 +93,8 @@ export default function PricingPage() {
 
                 {/* HEADLINE */}
                 <div className="text-center w-full mb-32 flex flex-col items-center">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-6xl font-bold mb-6 text-center leading-tight flex flex-col md:block" // Stack on mobile, inline on desktop if fits
+                    <h1
+                        className="text-4xl md:text-6xl font-bold mb-6 text-center leading-tight flex flex-col md:block animate-[fadeIn_0.8s_ease-out]" // Stack on mobile, inline on desktop if fits
                     >
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
                             Inwestycja w Twój&nbsp;
@@ -105,15 +102,12 @@ export default function PricingPage() {
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
                             Wizerunek Online
                         </span>
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-gray-400 text-lg md:text-xl text-center max-w-5xl px-4"
+                    </h1>
+                    <p
+                        className="text-gray-400 text-lg md:text-xl text-center max-w-5xl px-4 animate-[fadeIn_0.8s_ease-out_0.1s_both]"
                     >
                         Przejrzyste pakiety dopasowane do Twoich potrzeb. Brak ukrytych kosztów.
-                    </motion.p>
+                    </p>
                 </div>
 
                 {/* Rigid Spacer as requested */}
@@ -122,17 +116,16 @@ export default function PricingPage() {
                 {/* PRICING CARDS */}
                 <div className="w-full max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-32 justify-items-center">
                     {PRICING_PACKAGES.map((pkg, index) => (
-                        <motion.div
+                        <div
                             key={pkg.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 + 0.2 }}
                             className={`
                                 relative group rounded-3xl p-1
                                 bg-gradient-to-b from-white/10 to-transparent
                                 hover:from-white/20 transition-all duration-300
                                 flex flex-col h-full max-w-[450px] mx-auto w-full min-h-[600px] md:min-h-[650px]
+                                animate-[fadeIn_0.6s_ease-out_both]
                             `}
+                            style={{ animationDelay: `${index * 0.1 + 0.2}s` }}
                         >
                             {/* Card Inner */}
                             <div className="h-full bg-[#0a0a0a]/90 backdrop-blur-xl rounded-[22px] p-8 flex flex-col items-center relative overflow-hidden flex-grow border border-white/5">
@@ -211,7 +204,7 @@ export default function PricingPage() {
                                     </Link>
                                 </div>
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
 

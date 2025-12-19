@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 
 interface ProjectCardProps {
     title: string;
@@ -25,12 +24,9 @@ export default function ProjectCard({
     index = 0,
 }: ProjectCardProps) {
     return (
-        <motion.article
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, delay: index * 0.1, ease: [0.21, 0.45, 0.27, 0.9] }}
-            className={`group relative w-full ${className}`}
+        <article
+            className={`group relative w-full animate-[fadeIn_0.7s_ease-out_both] ${className}`}
+            style={{ animationDelay: `${index * 0.1}s` }}
         >
             {/* Image Container */}
             <div
@@ -59,13 +55,11 @@ export default function ProjectCard({
 
                 {/* Hover CTA */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="btn-secondary !rounded-none"
+                    <button
+                        className="btn-secondary !rounded-none transition-transform duration-200 hover:scale-105 active:scale-95"
                     >
                         Zobacz Demo
-                    </motion.button>
+                    </button>
                 </div>
             </div>
 
@@ -106,6 +100,6 @@ export default function ProjectCard({
                     </p>
                 </div>
             </div>
-        </motion.article>
+        </article>
     );
 }

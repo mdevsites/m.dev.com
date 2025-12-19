@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const { name, email, projectType, budget, message } = body;
+        const { name, email, package: projectType, budget, message } = body;
 
         // Basic validation
         if (!name || !email || !message) {
