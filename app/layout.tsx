@@ -71,17 +71,6 @@ export const metadata: Metadata = {
     images: ["/opengraph-image"],
   },
 
-  // Favicon i ikony
-  icons: {
-    icon: [
-      { url: "/favicon.png", type: "image/png" },
-      { url: "/favicon.ico", sizes: "any" }
-    ],
-    apple: [
-      { url: "/favicon.png", sizes: "180x180", type: "image/png" }
-    ],
-  },
-
   // Dodatkowe meta tagi
   robots: {
     index: true,
