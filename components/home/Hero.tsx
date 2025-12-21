@@ -41,8 +41,8 @@ export default function Hero() {
                         }}
                     />
 
-                    {/* Internal margin wrapper */}
-                    <div style={{ margin: '80px' }}>
+                    {/* Internal wrapper - Responsive spacing */}
+                    <div className="py-12 md:p-20 relative">
                         <div className="relative z-10 flex flex-col items-center text-center">
 
                             {/* HEADLINE WITH TYPING ANIMATION */}
@@ -124,10 +124,11 @@ export default function Hero() {
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, delay: 1.3, type: "spring", bounce: 0.4 }}
+                                className="relative z-20"
                             >
                                 <Link
                                     href="/portfolio"
-                                    className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-white font-medium text-lg transition-all duration-300 hover:bg-white/5"
+                                    className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-white font-medium text-lg transition-all duration-300 hover:bg-white/5 relative z-20"
                                 >
 
                                     <span>Zobacz Projekty</span>
@@ -145,7 +146,7 @@ export default function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 2 }}
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+                className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 pointer-events-none"
             >
                 <div className="absolute top-[20%] left-[10%] w-[300px] h-[300px] bg-purple-600/15 blur-[120px] rounded-full mix-blend-screen" />
                 <div className="absolute bottom-[20%] right-[10%] w-[250px] h-[250px] bg-blue-600/10 blur-[100px] rounded-full mix-blend-screen" />
