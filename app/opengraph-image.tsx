@@ -15,7 +15,7 @@ export default async function Image() {
         (
             <div
                 style={{
-                    background: '#0a0a0a',
+                    background: '#030014', // Deep rich dark blue/black
                     width: '100%',
                     height: '100%',
                     display: 'flex',
@@ -24,36 +24,37 @@ export default async function Image() {
                     justifyContent: 'center',
                     fontFamily: 'sans-serif',
                     position: 'relative',
-                    overflow: 'hidden',
                 }}
             >
-                {/* Background Gradients */}
+                {/* Background Gradient Orbs */}
                 <div
                     style={{
                         position: 'absolute',
                         top: '-20%',
-                        left: '-20%',
-                        width: '600px',
-                        height: '600px',
-                        background: 'rgba(192, 132, 252, 0.2)', // Purple
-                        filter: 'blur(120px)',
-                        borderRadius: '50%',
+                        left: '20%',
+                        width: '800px',
+                        height: '800px',
+                        background: 'rgba(168, 85, 247, 0.4)', // Purple
+                        filter: 'blur(180px)',
+                        opacity: 0.6,
+                        transform: 'translate(-50%, -50%)',
                     }}
                 />
                 <div
                     style={{
                         position: 'absolute',
-                        bottom: '-10%',
-                        right: '-10%',
-                        width: '500px',
-                        height: '500px',
-                        background: 'rgba(236, 72, 153, 0.15)', // Pink
-                        filter: 'blur(100px)',
-                        borderRadius: '50%',
+                        bottom: '-20%',
+                        right: '20%',
+                        width: '800px',
+                        height: '800px',
+                        background: 'rgba(236, 72, 153, 0.4)', // Pink
+                        filter: 'blur(180px)',
+                        opacity: 0.5,
+                        transform: 'translate(50%, 50%)',
                     }}
                 />
 
-                {/* Content Container */}
+                {/* Glass Card Container */}
                 <div
                     style={{
                         display: 'flex',
@@ -61,39 +62,48 @@ export default async function Image() {
                         alignItems: 'center',
                         justifyContent: 'center',
                         zIndex: 10,
+                        width: '85%',
+                        height: '75%',
+                        background: 'rgba(255, 255, 255, 0.03)',
+                        border: '1px solid rgba(255, 255, 255, 0.08)',
+                        borderRadius: '32px',
+                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
+                        // Backdrop filter support in Satori is limited, using transparency/overlay instead
                     }}
                 >
-                    {/* Logo */}
-                    <div style={{ display: 'flex', alignItems: 'baseline', marginBottom: '20px' }}>
+                    {/* Logo Section */}
+                    <div style={{ display: 'flex', alignItems: 'baseline', marginBottom: '24px' }}>
                         <div
                             style={{
-                                backgroundImage: 'linear-gradient(to right, #C084FC, #EC4899)',
-                                backgroundClip: 'text',
-                                color: 'transparent',
-                                fontSize: '96px',
+                                color: '#fff',
+                                fontSize: '110px',
                                 fontWeight: 900,
-                                letterSpacing: '-0.05em',
+                                letterSpacing: '-5px',
+                                lineHeight: 1,
                             }}
                         >
                             M
                         </div>
                         <div
                             style={{
-                                width: '20px',
-                                height: '20px',
+                                width: '18px',
+                                height: '18px',
                                 borderRadius: '50%',
                                 backgroundColor: '#EC4899',
                                 marginLeft: '8px',
-                                boxShadow: '0 0 20px #EC4899',
+                                boxShadow: '0 0 25px rgba(236, 72, 153, 0.8)',
                             }}
                         />
                         <div
                             style={{
-                                color: 'white',
-                                fontSize: '96px',
+                                backgroundImage: 'linear-gradient(to right, #e2e8f0, #ffffff)',
+                                backgroundClip: 'text',
+                                color: 'transparent',
+                                fontSize: '110px',
                                 fontWeight: 800,
                                 marginLeft: '4px',
-                                letterSpacing: '-0.05em',
+                                letterSpacing: '-4px',
+                                lineHeight: 1,
                             }}
                         >
                             dev
@@ -103,40 +113,59 @@ export default async function Image() {
                     {/* Tagline */}
                     <div
                         style={{
-                            color: '#e5e5e5',
-                            fontSize: '48px',
-                            fontWeight: 600,
-                            textAlign: 'center',
-                            marginBottom: '12px',
-                            letterSpacing: '-0.02em',
+                            position: 'relative',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
                         }}
                     >
-                        Tworzę strony internetowe
+                        {/* Decorative Line Left */}
+                        <div style={{ width: '60px', height: '1px', background: 'rgba(255,255,255,0.2)', marginRight: '24px' }} />
+
+                        <div
+                            style={{
+                                color: '#cbd5e1',
+                                fontSize: '36px',
+                                fontWeight: 500,
+                                letterSpacing: '1px',
+                                textTransform: 'uppercase',
+                                textAlign: 'center',
+                            }}
+                        >
+                            Nowoczesne Strony WWW
+                        </div>
+
+                        {/* Decorative Line Right */}
+                        <div style={{ width: '60px', height: '1px', background: 'rgba(255,255,255,0.2)', marginLeft: '24px' }} />
                     </div>
 
-                    {/* Sub-tagline */}
-                    <div
-                        style={{
-                            color: '#a3a3a3',
-                            fontSize: '32px',
-                            fontWeight: 400,
-                            textAlign: 'center',
-                        }}
-                    >
-                        Szybkie • Piękne • Skuteczne
-                    </div>
                 </div>
 
-                {/* Decorative Element / Border */}
+                {/* URL Badge */}
                 <div
                     style={{
                         position: 'absolute',
-                        bottom: 0,
-                        width: '100%',
-                        height: '8px',
-                        background: 'linear-gradient(to right, #C084FC, #EC4899)',
+                        bottom: '50px',
+                        background: 'rgba(0, 0, 0, 0.6)',
+                        padding: '12px 28px',
+                        borderRadius: '100px',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        display: 'flex',
+                        alignItems: 'center',
                     }}
-                />
+                >
+                    <div
+                        style={{
+                            color: '#fff',
+                            fontSize: '20px',
+                            fontWeight: 600,
+                            letterSpacing: '1px',
+                        }}
+                    >
+                        mdevsites.pl
+                    </div>
+                </div>
+
             </div>
         ),
         {
