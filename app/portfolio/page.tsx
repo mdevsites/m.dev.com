@@ -4,8 +4,10 @@ import { useState } from "react";
 import ProjectModal from "@/components/portfolio/ProjectModal";
 import DesktopProjectLayout from "@/components/portfolio/DesktopProjectLayout";
 import MobileProjectCarousel from "@/components/portfolio/MobileProjectCarousel";
+import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import { PORTFOLIO_PROJECTS } from "@/lib/constants";
 import dynamic from 'next/dynamic';
+import Link from "next/link";
 
 const AuroraBackground = dynamic(() => import('@/components/ui/AuroraBackground'), {
     ssr: false,
@@ -97,12 +99,13 @@ export default function PortfolioPage() {
                                         Porozmawiajmy o Twoim następnym projekcie. Jestem gotowy, żeby zamienić Twoją wizję w rzeczywistość.
                                     </p>
                                 </div>
-                                <a
+                                <Link
                                     href="/contact"
-                                    className="group inline-flex items-center gap-3 px-10 py-4 rounded-full text-white font-medium text-lg transition-all duration-300 hover:bg-white/5 border border-white/10"
+                                    className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-white font-medium text-lg transition-all duration-300 hover:bg-white/5"
                                 >
-                                    Skontaktuj się
-                                </a>
+                                    <span>Skontaktuj się</span>
+                                    <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </Link>
                             </div>
                         </div>
                     </section>

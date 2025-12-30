@@ -51,7 +51,7 @@ function ProjectSection({
 
     return (
         <section ref={containerRef} className="relative flex items-center py-20">
-            <div className={`flex w-full gap-12 items-center ${isEven ? 'flex-row' : 'flex-row-reverse'}`}>
+            <div className={`flex w-full gap-12 items-stretch ${isEven ? 'flex-row' : 'flex-row-reverse'}`}>
 
                 {/* Text Content - Sticky Side */}
                 <div className="w-[40%] flex flex-col gap-8">
@@ -61,59 +61,60 @@ function ProjectSection({
                         whileInView={index !== 0 ? { opacity: 1, x: 0 } : undefined}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         viewport={{ once: true, amount: 0.1 }}
+                        className="h-full flex flex-col justify-between"
                     >
-                        {/* Tags */}
-                        <div className="flex flex-wrap gap-2 mb-6">
-                            {project.tags.map((tag, idx) => (
-                                <span
-                                    key={idx}
-                                    className="px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider text-purple-300 bg-purple-900/20 border border-purple-500/20"
-                                >
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-
-                        {/* Title */}
-                        <h2 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-                            {project.title}
-                        </h2>
-
-                        {/* Description */}
-                        <p className="text-xl text-gray-400 leading-relaxed mb-8">
-                            {project.fullDescription || project.shortDescription}
-                        </p>
-
-                        {/* Stats / Metadata Grid if available */}
-                        {project.results && (
-                            <div className="grid grid-cols-2 gap-6 mb-10 border-t border-white/10 pt-6">
-                                {project.results.slice(0, 2).map((result, idx) => (
-                                    <div key={idx}>
-                                        <div className="flex items-center gap-2 text-purple-400 mb-1">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-                                            <span className="text-sm font-medium uppercase tracking-wider">Feature</span>
-                                        </div>
-                                        <p className="text-gray-300 text-sm">{result}</p>
-                                    </div>
+                        <div>
+                            {/* Tags */}
+                            <div className="flex flex-wrap gap-2 mb-6">
+                                {project.tags.map((tag, idx) => (
+                                    <span
+                                        key={idx}
+                                        className="px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider text-purple-300 bg-purple-900/20 border border-purple-500/20"
+                                    >
+                                        {tag}
+                                    </span>
                                 ))}
                             </div>
-                        )}
 
-                        {/* CTA Button */}
-                        <button
-                            onClick={onOpen}
-                            className="group inline-flex items-center gap-3 text-lg font-medium text-white/90 hover:text-purple-400 transition-colors duration-300"
-                        >
-                            <span>Zobacz Live Demo</span>
-                            <div className="relative flex items-center justify-center w-8 h-8 rounded-full border border-white/20 group-hover:border-purple-400 transition-colors duration-300">
-                                <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                            </div>
-                        </button>
+                            {/* Title */}
+                            <h2 className="text-5xl lg:text-7xl font-bold text-white mb-0 leading-tight">
+                                {project.title}
+                            </h2>
+
+                            {/* Spacer */}
+                            <div className="h-4 w-full" />
+
+                            {/* Description */}
+                            <p className="text-xl text-gray-400 leading-relaxed">
+                                {project.fullDescription || project.shortDescription}
+                            </p>
+                        </div>
+
+                        <div>
+                            <div className="h-8" />
+                            <div className="w-full h-px bg-white/10" />
+                            <div className="h-8" />
+
+                            {/* Stats / Metadata Grid if available */}
+                            {project.results && (
+                                <div className="grid grid-cols-2 gap-6 mb-10">
+                                    {project.results.slice(0, 2).map((result, idx) => (
+                                        <div key={idx}>
+                                            <div className="flex items-center gap-2 text-purple-400 mb-1">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+                                                <span className="text-sm font-medium uppercase tracking-wider">Feature</span>
+                                            </div>
+                                            <p className="text-gray-300 text-sm">{result}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                     </motion.div>
                 </div>
 
                 {/* Image Content - Scroll/Parallax Side */}
-                <div className="w-[55%]">
+                <div className="w-[55%] flex flex-col items-center justify-between gap-8">
                     <motion.div
                         className="relative w-full rounded-2xl overflow-hidden border border-white/10 group cursor-pointer"
                         whileHover={{ scale: 1.02 }}
@@ -136,6 +137,34 @@ function ProjectSection({
                             </div>
                         </div>
                     </motion.div>
+
+                    {/* CTA Button - Moved here */}
+                    <button
+                        onClick={onOpen}
+                        className="group relative inline-flex items-center justify-center bg-transparent border border-white/30 text-white rounded-full text-lg font-medium tracking-wide transition-all duration-300 hover:bg-white hover:text-black hover:border-transparent hover:scale-105 overflow-hidden"
+                    >
+                        {/* Horizontal Spacer Left */}
+                        <div className="w-4 h-full" />
+
+                        <div className="flex flex-col items-center justify-center">
+                            {/* Vertical Spacer Top */}
+                            <div className="h-2 w-full" />
+
+                            {/* Content */}
+                            <div className="flex items-center gap-4">
+                                <span>Zobacz Live Demo</span>
+                                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center transition-colors duration-300 group-hover:bg-black/10">
+                                    <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:rotate-45" />
+                                </div>
+                            </div>
+
+                            {/* Vertical Spacer Bottom */}
+                            <div className="h-2 w-full" />
+                        </div>
+
+                        {/* Horizontal Spacer Right */}
+                        <div className="w-4 h-full" />
+                    </button>
                 </div>
 
             </div>

@@ -57,10 +57,18 @@ export default function MobileProjectCarousel({ onOpenProject }: MobileProjectCa
                             {/* Minimal Button */}
                             <button
                                 onClick={() => onOpenProject(project)}
-                                className="absolute bottom-6 left-6 right-6 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white font-medium text-sm flex items-center justify-center gap-2 transition-all active:scale-95"
+                                className="absolute bottom-6 left-6 right-6 rounded-xl bg-black/40 border border-white/30 backdrop-blur-md text-white font-bold text-sm tracking-wide flex flex-col items-center justify-center transition-all active:scale-95 active:bg-white active:text-black overflow-hidden"
                             >
-                                <Play className="w-3.5 h-3.5 fill-current" />
-                                Zobacz Live Demo
+                                {/* Top Spacer */}
+                                <div className="h-1.5 w-full" />
+
+                                <div className="flex items-center gap-2">
+                                    <Play className="w-3.5 h-3.5 fill-current" />
+                                    <span>Zobacz Live Demo</span>
+                                </div>
+
+                                {/* Bottom Spacer */}
+                                <div className="h-1.5 w-full" />
                             </button>
                         </div>
                     </div>
