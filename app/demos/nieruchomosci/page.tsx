@@ -106,53 +106,72 @@ export default function RealEstateHomePage() {
                     <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-[#C5A059] rounded-full blur-[140px] opacity-[0.12] -z-10 pointer-events-none" />
 
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-                        className="space-y-8 will-change-transform text-center md:text-left flex flex-col items-center md:items-start"
+                        initial="hidden"
+                        animate="visible"
+                        variants={{
+                            hidden: { opacity: 0 },
+                            visible: {
+                                opacity: 1,
+                                transition: {
+                                    staggerChildren: 0.15,
+                                    delayChildren: 0.1
+                                }
+                            }
+                        }}
+                        className="flex flex-col items-center md:items-start space-y-8 relative z-30"
                     >
-                        <h1 className="text-[15vw] md:text-[12vw] leading-[0.85] font-serif font-bold tracking-tighter m-0 pointer-events-auto text-white">
-                            <TextReveal delay={0.2} className="md:pr-8 pb-4 pt-4">HORIZON</TextReveal>
-                        </h1>
-                        <h1 className="text-[15vw] md:text-[12vw] leading-[0.85] font-serif font-bold tracking-tighter m-0 md:ml-24 text-[#C5A059] opacity-90 pointer-events-auto">
-                            <TextReveal delay={0.6} className="md:pr-8 pb-4 pt-4">ESTATES</TextReveal>
-                        </h1>
-                    </motion.div>
+                        {/* Title Group */}
+                        <div className="flex flex-col items-center md:items-start text-center md:text-left">
+                            <h1 className="text-[15vw] md:text-[12vw] leading-[0.85] font-serif font-bold tracking-tighter m-0 pointer-events-auto text-white">
+                                <TextReveal priority>HORIZON</TextReveal>
+                            </h1>
+                            <h1 className="text-[15vw] md:text-[12vw] leading-[0.85] font-serif font-bold tracking-tighter m-0 md:ml-24 text-[#C5A059] opacity-90 pointer-events-auto">
+                                <TextReveal priority className="md:pr-16 pb-4 pt-4 relative z-50">ESTATES</TextReveal>
+                            </h1>
+                        </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1.5, duration: 1, ease: "easeOut" }}
-                        className="mt-12 md:max-w-md pointer-events-auto will-change-transform flex flex-col items-center md:items-start md:ml-[25px]"
-                    >
-                        <div className="flex items-center gap-6 mb-8 text-center md:text-left">
-                            <div className="w-[3px] h-12 bg-[#C5A059] shrink-0 hidden md:block" />
-                            <p className="text-gray-300 text-lg md:text-xl font-light tracking-widest text-center md:text-left">
-                                DEFINIUJEMY NOWĄ ERĘ LUKSUSU
-                            </p>
-                        </div>
-                        <div className="flex flex-col sm:flex-row items-center gap-6 w-full justify-center md:justify-start">
-                            {/* Structural spacer to align button text with the slogan text above (Line 3px + Gap 24px) */}
-                            <div className="hidden md:block w-[3px] shrink-0" />
-                            <Link
-                                href="/demos/nieruchomosci/oferty"
-                                className="group/btn flex items-center gap-4 px-0 py-2 border-b border-[#C5A059] text-[#C5A059] font-serif text-xl tracking-widest hover:text-white hover:border-white transition-colors duration-500"
-                            >
-                                ZOBACZ KOLEKCJĘ
-                                <span className="group-hover/btn:translate-x-2 transition-transform duration-500">
-                                    →
-                                </span>
-                            </Link>
-                        </div>
+                        {/* Slogan Group - Now synchronized with titles */}
+                        <motion.div
+                            variants={{
+                                hidden: { opacity: 0, y: 20 },
+                                visible: {
+                                    opacity: 1,
+                                    y: 0,
+                                    transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }
+                                }
+                            }}
+                            className="mt-4 md:max-w-md pointer-events-auto flex flex-col items-center md:items-start md:ml-[25px]"
+                        >
+                            <div className="flex items-center gap-6 mb-8 text-center md:text-left">
+                                <div className="w-[3px] h-12 bg-[#C5A059] shrink-0 hidden md:block" />
+                                <p className="text-gray-300 text-lg md:text-xl font-light tracking-widest text-center md:text-left">
+                                    DEFINIUJEMY NOWĄ ERĘ LUKSUSU
+                                </p>
+                            </div>
+                            <div className="flex flex-col sm:flex-row items-center gap-6 w-full justify-center md:justify-start">
+                                {/* Structural spacer */}
+                                <div className="hidden md:block w-[3px] shrink-0" />
+                                <Link
+                                    href="/demos/nieruchomosci/oferty"
+                                    className="group/btn flex items-center gap-4 px-0 py-2 border-b border-[#C5A059] text-[#C5A059] font-serif text-xl tracking-widest hover:text-white hover:border-white transition-colors duration-500"
+                                >
+                                    ZOBACZ KOLEKCJĘ
+                                    <span className="group-hover/btn:translate-x-2 transition-transform duration-500">
+                                        →
+                                    </span>
+                                </Link>
+                            </div>
+                        </motion.div>
                     </motion.div>
                 </div>
 
                 {/* Right Content - Image Pane */}
+                {/* Right Content - Image Pane */}
                 <motion.div
-                    initial={{ scale: 1.05, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 1.0, duration: 1.8, ease: "easeOut" }}
-                    className="absolute top-0 right-0 w-full h-full md:w-[55%] z-10 will-change-transform"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className="absolute top-0 right-0 w-full h-full md:w-[55%] z-10"
                 >
                     <ParallaxImage
                         src="/assets/demos/nieruchomosci/hero.png"
@@ -162,8 +181,10 @@ export default function RealEstateHomePage() {
                         priority
                         containerClassName="w-full h-full"
                     >
-                        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#0a0a0a]" />
+                        {/* Overlay for depth/contrast - placed BEFORE gradient so gradient fades to pure BG color */}
                         <div className="absolute inset-0 bg-black/20" />
+                        {/* Gradient Blend - kept inside to ensure perfect alignment, no scale animation on container avoids artifacts */}
+                        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#0a0a0a]/60 to-[#0a0a0a]" />
                     </ParallaxImage>
                 </motion.div>
             </section>

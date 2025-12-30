@@ -77,8 +77,9 @@ export default function AboutPage() {
                 <div className="h-32"></div>
 
                 {/* Stats Section */}
-                <div className="border border-white/5 rounded-xl p-8 md:p-16">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12">
+                <div className="relative py-8">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl h-[300px] bg-white opacity-[0.12] blur-[120px] pointer-events-none rounded-full" />
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 relative z-10">
                         <div className="text-center">
                             <div className="text-4xl md:text-5xl font-serif font-bold text-[#C5A059] mb-2">15+</div>
                             <div className="text-[10px] text-gray-500 uppercase tracking-widest">Lat na rynku</div>
@@ -188,11 +189,11 @@ export default function AboutPage() {
                     {values.map((val, idx) => (
                         <motion.div
                             key={idx}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1 }}
-                            className="bg-[#0F0F0F]/60 backdrop-blur-xl border border-white/5 rounded-xl text-center group hover:border-[#C5A059]/30 transition-all duration-500 overflow-hidden"
+                            initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+                            whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.7, delay: idx * 0.2, ease: "easeOut" }}
+                            className="bg-[#0F0F0F]/60 backdrop-blur-xl border border-white/5 rounded-xl text-center group hover:border-[#C5A059]/30 transition-colors duration-500 overflow-hidden"
                         >
                             {/* Top Spacer */}
                             <div className="h-10"></div>

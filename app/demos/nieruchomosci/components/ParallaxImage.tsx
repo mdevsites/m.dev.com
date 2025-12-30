@@ -32,7 +32,7 @@ export default function ParallaxImage({
         <div ref={ref} className={`relative overflow-hidden ${containerClassName}`}>
             <motion.div
                 style={{ y, scale: 1.2 }} // Scale up to avoid empty edges during movement
-                className="relative w-full h-full"
+                className="relative w-full h-full will-change-transform"
             >
                 <Image
                     className={className}

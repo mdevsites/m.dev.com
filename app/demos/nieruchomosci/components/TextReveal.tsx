@@ -10,19 +10,30 @@ interface TextRevealProps {
     duration?: number;
 }
 
-export default function TextReveal({ children, className = "", delay = 0, duration = 0.5 }: TextRevealProps) {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-10% 0px -10% 0px" });
-    const [isFinished, setIsFinished] = useState(false);
+export default function TextReveal({ children, className = "", delay = 0, duration = 0.8, priority = false }: { children: React.ReactNode; className?: string; delay?: number; duration?: number; priority?: boolean }) {
+    // Switched to Blur Reveal - no overflow needed, no vertical shift artifacts
 
     return (
-        <span ref={ref} className={`inline-block relative ${isFinished ? "" : "overflow-hidden"} ${className}`}>
+        <span className={`inline-block ${className}`}>
             <motion.span
-                initial={{ y: "110%", opacity: 0 }}
-                animate={isInView ? { y: "0%", opacity: 1 } : {}}
-                transition={{ duration, delay, ease: [0.33, 1, 0.68, 1] }} // Cubic bezier for "heavy" feel
+                variants={{
+                    hidden: { opacity: 0, filter: "blur(12px)" },
+                    visible: {
+                        opacity: 1,
+                        filter: "blur(0px)",
+                        transition: {
+                            duration,
+                            delay,
+                            ease: "easeOut"
+                        }
+                    }
+                }}
+                // If not controlled by parent (no variants passed implicitly), these defaults won't hurt 
+                // but usually we rely on parent 'initial' and 'animate' props.
+                // However, to be safe for standalone usage, we keep the original behavior if not orchestrated?
+                // For this specific optimization, we assume parent control in the Hero section.
+                // Removed will-change-transform to prevent GPU layer artifacts (vertical line glitch)
                 className="inline-block"
-                onAnimationComplete={() => setIsFinished(true)}
             >
                 {children}
             </motion.span>
@@ -31,24 +42,46 @@ export default function TextReveal({ children, className = "", delay = 0, durati
 }
 
 export function MultiLineReveal({ children, className = "", delay = 0 }: { children: string; className?: string; delay?: number }) {
-    // Splits by lines if passed as a template literal with newlines, or just creates one wrapper
     const lines = children.split('\n');
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-10%" });
+
+    const container = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: delay
+            }
+        }
+    };
+
+    const childVariant = {
+        hidden: { opacity: 0, filter: "blur(12px)" },
+        visible: {
+            opacity: 1,
+            filter: "blur(0px)",
+            transition: {
+                duration: 0.8,
+                ease: "easeOut"
+            }
+        }
+    };
 
     return (
-        <div ref={ref} className={className}>
+        <motion.div
+            className={className}
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-10%" }}
+        >
             {lines.map((line, i) => (
-                <div key={i} className="overflow-hidden relative">
-                    <motion.div
-                        initial={{ y: "100%" }}
-                        animate={isInView ? { y: "0%" } : {}}
-                        transition={{ duration: 0.8, delay: delay + (i * 0.1), ease: [0.33, 1, 0.68, 1] }}
-                    >
+                <div key={i} className="relative">
+                    <motion.div variants={childVariant}>
                         {line}
                     </motion.div>
                 </div>
             ))}
-        </div>
+        </motion.div>
     );
 }

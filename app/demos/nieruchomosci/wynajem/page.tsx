@@ -17,12 +17,12 @@ import {
 import { allProperties } from "../data";
 
 export default function RentalPage() {
-    const [filterStatus, setFilterStatus] = useState("Wynajem");
     const [filterType, setFilterType] = useState("Wszystkie");
     const [searchQuery, setSearchQuery] = useState("");
+    const [activeDropdown, setActiveDropdown] = useState<"status" | "type" | null>(null);
 
     const filteredProperties = allProperties.filter(prop => {
-        const matchesStatus = filterStatus === "Wszystkie" || prop.status === filterStatus;
+        const matchesStatus = prop.status === "Wynajem";
         const matchesType = filterType === "Wszystkie" || prop.type === filterType;
         const matchesSearch = prop.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             prop.location.toLowerCase().includes(searchQuery.toLowerCase());
@@ -35,6 +35,14 @@ export default function RentalPage() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[#C5A059] opacity-[0.03] blur-[120px] pointer-events-none" />
 
             <div className="max-w-[1280px] mx-auto w-full px-6 relative z-10">
+                {/* Click Overlay */}
+                {activeDropdown && (
+                    <div
+                        className="fixed inset-0 z-40"
+                        onClick={() => setActiveDropdown(null)}
+                    />
+                )}
+
                 {/* Fixed Spacer for Navbar */}
                 <div className="h-40" />
 
@@ -54,92 +62,94 @@ export default function RentalPage() {
                 {/* Spacer between Description and Filters */}
                 <div className="h-20" />
 
-                {/* Filter Bar - Rigid Flexbox Fix */}
-                <div className="flex justify-center w-full">
-                    <div className="w-full max-w-4xl bg-[#0F0F0F]/90 backdrop-blur-2xl border border-white/10 rounded-2xl lg:rounded-full shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] flex flex-col lg:flex-row items-center p-2">
-                        {/* Left Spacer */}
-                        <div className="hidden lg:block w-12 shrink-0 h-full"></div>
-
-                        {/* Search Input */}
-                        <div className="w-full lg:flex-1 relative border-b lg:border-b-0 border-white/5 group transition-colors hover:bg-white/[0.02] lg:rounded-l-full py-4 lg:py-3 px-6">
-                            <label className="block text-center lg:text-left text-[#C5A059] text-[10px] uppercase tracking-widest font-bold mb-2">Lokalizacja</label>
-                            <div className="relative flex items-center justify-center lg:justify-start">
-                                <Search className="text-gray-500 group-hover:text-white transition-colors mr-3 h-4 w-4" />
+                {/* Inline Filter Tags - Modern Tag System (Balanced Medium) */}
+                <div className="flex flex-wrap items-center gap-4 justify-center">
+                    {/* Location Tag */}
+                    <div className="relative group">
+                        <div className="bg-[#0F0F0F]/60 backdrop-blur-md border border-white/10 rounded-full hover:border-[#C5A059]/50 transition-all duration-300 cursor-pointer overflow-hidden">
+                            <div className="h-12 min-w-[200px] flex items-center justify-center px-4">
+                                {/* Edge Spacer */}
+                                <div className="w-6 shrink-0" />
+                                <Search className="text-gray-500 group-hover:text-[#C5A059] transition-colors" size={14} />
                                 <input
                                     type="text"
-                                    placeholder="Wpisz miasto..."
-                                    className="w-full bg-transparent border-none text-white p-0 focus:ring-0 placeholder:text-gray-600 font-light text-base leading-none text-center lg:text-left"
+                                    placeholder="Lokalizacja"
+                                    className="bg-transparent border-none outline-none focus:outline-none text-white text-[11px] uppercase tracking-[0.15em] p-0 focus:ring-0 placeholder:text-gray-500 w-full font-semibold text-center font-sans placeholder:uppercase"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
+                                    autoComplete="off"
                                 />
+                                {/* Balance Spacer */}
+                                <div className="w-2 shrink-0" />
                             </div>
                         </div>
-
-                        {/* Atomic Spacer */}
-                        <div className="hidden lg:block w-6 shrink-0"></div>
-
-                        {/* Status Select */}
-                        <div className="w-full lg:flex-1 relative border-b lg:border-b-0 border-white/5 group transition-colors hover:bg-white/[0.02] py-4 lg:py-3 px-6">
-                            <label className="block text-center lg:text-left text-[#C5A059] text-[10px] uppercase tracking-widest font-bold mb-2">Status</label>
-                            <div className="relative flex items-center justify-center lg:justify-start">
-                                <select
-                                    className="w-full bg-transparent border-none text-white p-0 pr-8 appearance-none focus:ring-0 cursor-pointer font-light text-base leading-none text-center lg:text-left"
-                                    value={filterStatus}
-                                    onChange={(e) => setFilterStatus(e.target.value)}
-                                >
-                                    <option value="Wszystkie" className="bg-[#121212]">Dowolny</option>
-                                    <option value="Sprzedaż" className="bg-[#121212]">Sprzedaż</option>
-                                    <option value="Wynajem" className="bg-[#121212]">Wynajem</option>
-                                </select>
-                                <ChevronDown className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-600 group-hover:text-white pointer-events-none transition-colors" size={14} />
-                            </div>
-                        </div>
-
-                        {/* Atomic Spacer */}
-                        <div className="hidden lg:block w-6 shrink-0"></div>
-
-                        {/* Type Select */}
-                        <div className="w-full lg:flex-1 relative group transition-colors hover:bg-white/[0.02] py-4 lg:py-3 px-6">
-                            <label className="block text-center lg:text-left text-[#C5A059] text-[10px] uppercase tracking-widest font-bold mb-2">Typ</label>
-                            <div className="relative flex items-center justify-center lg:justify-start">
-                                <select
-                                    className="w-full bg-transparent border-none text-white p-0 pr-8 appearance-none focus:ring-0 cursor-pointer font-light text-base leading-none text-center lg:text-left"
-                                    value={filterType}
-                                    onChange={(e) => setFilterType(e.target.value)}
-                                >
-                                    <option value="Wszystkie" className="bg-[#121212]">Wszystkie</option>
-                                    <option value="Apartament" className="bg-[#121212]">Apartament</option>
-                                    <option value="Willa" className="bg-[#121212]">Willa</option>
-                                    <option value="Loft" className="bg-[#121212]">Loft</option>
-                                </select>
-                                <ChevronDown className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-600 group-hover:text-white pointer-events-none transition-colors" size={14} />
-                            </div>
-                        </div>
-
-                        {/* Atomic Spacer */}
-                        <div className="hidden lg:block w-6 shrink-0"></div>
-
-                        {/* Search Button */}
-                        <div className="p-2 shrink-0 flex justify-end w-full lg:w-auto">
-                            <button className="w-full lg:w-12 lg:h-12 bg-[#C5A059] rounded-xl lg:rounded-full text-black flex items-center justify-center hover:bg-white hover:scale-110 transition-all duration-300 shadow-[0_0_20px_rgba(197,160,89,0.3)]">
-                                <Search size={20} />
-                                <span className="lg:hidden ml-2 font-bold uppercase tracking-widest text-sm">Szukaj</span>
-                            </button>
-                        </div>
-
-                        {/* Right Spacer */}
-                        <div className="hidden lg:block w-12 shrink-0 h-full"></div>
                     </div>
+
+
+
+                    {/* Type Tag */}
+                    <div className={`relative group ${activeDropdown === 'type' ? 'z-50' : 'z-30'}`}>
+                        <div
+                            onClick={() => setActiveDropdown(activeDropdown === 'type' ? null : 'type')}
+                            className={`bg-[#0F0F0F]/60 backdrop-blur-md border ${activeDropdown === 'type' ? 'border-white/10 border-b-transparent rounded-t-[24px] rounded-b-none bg-[#0F0F0F]/95' : 'border-white/10 group-hover:border-[#C5A059]/50 rounded-full'} transition-all duration-300 cursor-pointer overflow-hidden relative z-10`}
+                        >
+                            <div className="h-12 min-w-[180px] flex items-center justify-between px-4">
+                                <div className="flex-1 flex items-center justify-center pl-4">
+                                    <span className="text-white text-[11px] uppercase tracking-[0.15em] font-semibold text-center font-sans select-none">
+                                        {filterType === 'Wszystkie' ? 'Typ: Wszystkie' : filterType}
+                                    </span>
+                                </div>
+                                <ChevronDown
+                                    className={`text-gray-500 ${activeDropdown === 'type' ? 'text-[#C5A059] rotate-180' : 'group-hover:text-[#C5A059]'} transition-all duration-300 pointer-events-none shrink-0 ml-2`}
+                                    size={14}
+                                />
+                                {/* Edge Spacer */}
+                                <div className="w-6 shrink-0" />
+                            </div>
+                        </div>
+
+                        {/* Custom Dropdown Menu - Merged Shape */}
+                        <div className={`absolute top-full left-0 w-full -mt-[1px] bg-[#0F0F0F]/95 backdrop-blur-xl border border-white/10 border-t-full border-t-transparent rounded-b-[24px] rounded-t-none overflow-hidden transition-all duration-300 origin-top shadow-2xl ${activeDropdown === 'type' ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'}`}>
+                            {['Wszystkie', 'Apartament', 'Willa', 'Loft'].map((option) => (
+                                <div
+                                    key={option}
+                                    onClick={() => {
+                                        setFilterType(option);
+                                        setActiveDropdown(null);
+                                    }}
+                                    className={`px-6 py-5 text-sm uppercase tracking-[0.15em] font-medium text-center cursor-pointer transition-colors border-b border-white/5 last:border-none ${filterType === option ? 'text-[#C5A059] bg-white/5' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
+                                >
+                                    {option === 'Wszystkie' ? 'Wszystkie' : option}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Search Action Tag */}
+                    <button className="group bg-[#C5A059] rounded-full hover:bg-white transition-all duration-300">
+                        <div className="h-12 min-w-[140px] flex items-center justify-center px-4">
+                            {/* Edge Spacer */}
+                            <div className="w-4 shrink-0" />
+                            <Search className="text-black" size={14} />
+                            <div className="w-2 shrink-0" />
+                            <span className="text-black text-[11px] font-bold uppercase tracking-[0.2em] font-sans">Szukaj</span>
+                            {/* Edge Spacer */}
+                            <div className="w-4 shrink-0" />
+                        </div>
+                    </button>
                 </div>
 
                 {/* Atomic Spacer between Filters and Results */}
                 <div className="h-24 lg:h-32"></div>
 
                 {/* Results Count */}
-                <div className="mb-10 flex items-center justify-between text-gray-400 text-xs uppercase tracking-widest">
+                <div className="flex items-center justify-between text-gray-400 text-xs uppercase tracking-widest">
                     <span>Znaleziono: <span className="text-white font-bold">{filteredProperties.length}</span> ofert</span>
                     <span className="hidden md:inline">Sortuj według: <span className="text-[#C5A059] cursor-pointer font-bold border-b border-[#C5A059]/30 hover:border-[#C5A059] transition-all">Najnowsze</span></span>
                 </div>
+
+                {/* Spacer */}
+                <div className="h-8" />
 
                 {/* Property Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
@@ -185,7 +195,7 @@ export default function RentalPage() {
                                         <div className="flex items-center gap-2 text-[#C5A059] text-[10px] uppercase tracking-[0.2em] mb-4 opacity-80 group-hover:opacity-100 transition-opacity">
                                             <MapPin size={12} className="group-hover:scale-110 transition-transform" /> {prop.location}
                                         </div>
-                                        <h4 className="text-2xl font-serif font-bold text-white mb-8 group-hover:text-[#C5A059] transition-colors duration-500">
+                                        <h4 className="text-2xl font-serif font-bold text-white mb-8 group-hover:text-[#C5A059] transition-colors duration-500 min-h-[64px] flex items-end">
                                             {prop.title}
                                         </h4>
 
@@ -213,7 +223,10 @@ export default function RentalPage() {
                                         {/* Atomic Spacer */}
                                         <div className="h-6"></div>
 
-                                        <div className="h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8" />
+                                        <div className="h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+                                        {/* Spacer */}
+                                        <div className="h-8" />
 
                                         <div className="mt-auto flex items-center justify-between">
                                             <span className="text-white font-serif text-2xl font-bold">{prop.price}</span>
@@ -241,7 +254,6 @@ export default function RentalPage() {
                         <p className="text-gray-400 mb-8">Nasz zespół pracuje nad pozyskaniem nowych, wyjątkowych nieruchomości.</p>
                         <button
                             onClick={() => {
-                                setFilterStatus("Wszystkie");
                                 setFilterType("Wszystkie");
                                 setSearchQuery("");
                             }}
@@ -251,6 +263,49 @@ export default function RentalPage() {
                         </button>
                     </div>
                 )}
+
+                {/* Spacer */}
+                <div className="h-32" />
+
+                {/* Premium CTA Section */}
+                <div className="relative rounded-3xl overflow-hidden group">
+                    <div className="absolute inset-0 bg-[#C5A059] opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+
+                    <div className="relative px-8 py-20 md:px-12 md:py-32 flex flex-col items-center text-center border border-white/5 rounded-3xl">
+                        {/* Top Edge Spacer */}
+                        <div className="h-10" />
+
+                        <h3 className="text-3xl md:text-5xl font-serif font-bold text-white">
+                            Nie znalazłeś <span className="text-[#C5A059]">idealnego</span> najmu?
+                        </h3>
+
+                        {/* Spacer */}
+                        <div className="h-10" />
+
+                        <p className="text-gray-400 max-w-4xl text-lg font-light leading-relaxed">
+                            Wiele naszych najbardziej prestiżowych apartamentów dostępnych jest wyłącznie w ofercie dyskretnej.
+                            Skontaktuj się z nami, aby poznać szczegóły naszej prywatnej kolekcji.
+                        </p>
+
+                        {/* Spacer */}
+                        <div className="h-12" />
+
+                        <button className="bg-[#C5A059] rounded-full hover:bg-white hover:scale-105 transition-all duration-300 shadow-[0_10px_40px_-10px_rgba(197,160,89,0.3)] group/btn">
+                            <div className="flex items-center justify-center h-16">
+                                <div className="w-12 shrink-0" />
+                                <span className="text-black font-bold uppercase tracking-widest text-xs whitespace-nowrap">Skontaktuj się z nami</span>
+                                <div className="w-12 shrink-0" />
+                            </div>
+                        </button>
+
+                        {/* Bottom Edge Spacer */}
+                        <div className="h-10" />
+                    </div>
+                </div>
+
+                {/* Spacer between CTA and Footer */}
+                <div className="h-24" />
             </div>
         </div>
     );
