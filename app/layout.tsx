@@ -85,7 +85,15 @@ export const metadata: Metadata = {
   },
 
   verification: {
-    // google: "your-google-verification-code", // Dodaj później z Google Search Console
+    google: "6WrMQY7U8lAfqyjAb3OWW98YJ1ldUv4r_e3LmuAaEIU",
+  },
+  icons: {
+    icon: [
+      { url: '/icon', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/icon' },
+    ],
   },
 };
 export default function RootLayout({
